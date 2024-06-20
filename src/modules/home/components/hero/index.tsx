@@ -10,7 +10,7 @@ const Hero = () => {
             level="h1"
             className="text-3xl leading-10 text-ui-fg-base font-normal"
           >
-            Ecommerce Starter Template
+            Assignment for CodeCanva
           </Heading>
           <Heading
             level="h2"
@@ -20,7 +20,7 @@ const Hero = () => {
           </Heading>
         </span>
         <a
-          href="https://github.com/medusajs/nextjs-starter-medusa"
+          href="https://github.com/saajiidi/next-frontend"
           target="_blank"
         >
           <Button variant="secondary">
