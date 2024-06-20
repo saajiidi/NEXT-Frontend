@@ -13,7 +13,7 @@ const baseURL =
 
 const axiosInstance = axios.create({
   baseURL,
-  // other config options
+  // Add other Axios configuration options if needed
 })
 
 /**
@@ -55,6 +55,7 @@ module.exports = {
   ...nextConfig, // Spread nextConfig to include Next.js configurations
   env: {
     MEDUSA_ADMIN_BACKEND_URL: adminBackendUrl,
+    API_BASE_URL: baseURL, // Use baseURL as API_BASE_URL
   },
 }
 
