@@ -31,16 +31,14 @@ const AccordionComponent = ({
 }
 
 const Item = ({
-  title = undefined,
-  subtitle = undefined,
-  description = undefined,
-  children = undefined,
-  className = undefined,
-  headingSize = "large",
+ 
+  title: string = '',
+  subtitle: string = '',
+  description: string = '',
+  className?: undefined,
+  headingSize = 'large',
   customTrigger = undefined,
-  forceMountContent = undefined,
-  triggerable = undefined,
-  ...props
+  ...props,
 }) => {
   return (
     <AccordionItem
@@ -59,7 +57,7 @@ const Item = ({
             </div>
             <AccordionItem>
               {customTrigger || <MorphingTrigger />}
-            </AccordionItem> 
+            </AccordionItem>
           </div>
           {subtitle && (
             <Text as="span" size="small" className="mt-1">
