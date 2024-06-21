@@ -2,7 +2,7 @@ import { Text, clx } from "@medusajs/ui"
 import { Accordion, AccordionItem } from "@nextui-org/react"
 import React from "react"
 
-const AccordionComponent = ({ children, ...props }) => {
+const AccordionComponent = ({ children, ...props } : {childeren: React.ReactNode}) => {
   const { type, ...accordionProps } = props
   return (
     <Accordion type={type} {...accordionProps}>
