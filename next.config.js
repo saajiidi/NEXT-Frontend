@@ -1,14 +1,10 @@
-const axios = require("axios") // Import Axios library
-
-// Import other necessary modules
+const axios = require("axios")
 const { withStoreConfig } = require("./store-config")
 const store = require("./store.config.json")
 
 /**
  * Axios instance with base URL
  */
-
-
 const baseURL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   "https://medusa-backend-black.vercel.app"
@@ -58,7 +54,6 @@ module.exports = {
   env: {
     MEDUSA_ADMIN_BACKEND_URL: adminBackendUrl,
     API_BASE_URL: baseURL, // Use baseURL as API_BASE_URL
-    
   },
 }
 
