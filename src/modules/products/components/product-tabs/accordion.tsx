@@ -1,35 +1,9 @@
 import { Text, clx } from "@medusajs/ui"
-import {
-  Accordion,
-  AccordionItem,
-  AccordionSingleProps,
-  AccordionMultipleProps,
-} from "@radix-ui/react-accordion"
+import { Accordion, AccordionItem } from "@nextui-org/accordion"
 import React from "react"
 
-type AccordionItemProps = {
-  title: string
-  subtitle?: string
-  description?: string
-  required?: boolean
-  tooltip?: string
-  className?: string
-  forceMountContent?: true
-  headingSize?: "small" | "medium" | "large"
-  customTrigger?: React.ReactNode
-  complete?: boolean
-  active?: boolean
-  triggerable?: boolean
-  children: React.ReactNode
-}
-
-type AccordionProps = AccordionSingleProps | AccordionMultipleProps
-
-const AccordionComponent: React.FC<AccordionProps> & {
-  Item: React.FC<AccordionItemProps>
-} = ({ children, ...props }) => {
-  // Destructure `type` from `props` to pass it to `Accordion`
-  const { type, ...accordionProps } = props as AccordionProps
+const AccordionComponent = ({ children, ...props }) => {
+  const { type, ...accordionProps } = props
   return (
     <Accordion type={type} {...accordionProps}>
       {React.Children.map(children, (child, index) => {
@@ -46,7 +20,7 @@ const AccordionComponent: React.FC<AccordionProps> & {
   )
 }
 
-const Item: React.FC<AccordionItemProps> = ({
+const Item = ({
   title,
   subtitle,
   description,
