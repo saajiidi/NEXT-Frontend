@@ -1,3 +1,5 @@
+const { nextui } = require("@nextui-org/react")
+
 const path = require("path")
 
 module.exports = {
