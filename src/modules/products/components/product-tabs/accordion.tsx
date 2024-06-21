@@ -62,7 +62,7 @@ const Item: React.FC<AccordionItemProps> = ({
               <Text className="text-ui-fg-subtle text-sm">{title}</Text>
             </div>
             
-            <AccordionPrimitive.Trigger>
+            <AccordionPrimitive.Trigger asChild>
               {customTrigger || <MorphingTrigger />}
             </AccordionPrimitive.Trigger>
           </div>
