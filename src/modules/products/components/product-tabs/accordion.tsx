@@ -27,9 +27,14 @@ const Accordion: React.FC<AccordionProps> & {
   Item: React.FC<AccordionItemProps>
 } = ({ children, ...props }) => {
   return (
-    // @ts-expect-error
     <AccordionPrimitive.Root {...props}>{children}</AccordionPrimitive.Root>
   )
+}
+
+const CustomHeader: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return <div className="px-1">{children}</div>
 }
 
 const Item: React.FC<AccordionItemProps> = ({
@@ -45,7 +50,6 @@ const Item: React.FC<AccordionItemProps> = ({
   ...props
 }) => {
   return (
-    // @ts-expect-error
     <AccordionPrimitive.Item
       {...props}
       className={clx(
@@ -54,13 +58,13 @@ const Item: React.FC<AccordionItemProps> = ({
         className
       )}
     >
-      <AccordionPrimitive.Header className="px-1" asChild>
+      <CustomHeader>
         <div className="flex flex-col">
           <div className="flex w-full items-center justify-between">
             <div className="flex items-center gap-4">
               <Text className="text-ui-fg-subtle text-sm">{title}</Text>
             </div>
-            <AccordionPrimitive.Trigger>
+            <AccordionPrimitive.Trigger asChild>
               {customTrigger || <MorphingTrigger />}
             </AccordionPrimitive.Trigger>
           </div>
@@ -70,7 +74,7 @@ const Item: React.FC<AccordionItemProps> = ({
             </Text>
           )}
         </div>
-      </AccordionPrimitive.Header>
+      </CustomHeader>
       <AccordionPrimitive.Content
         forceMount={forceMountContent}
         className={clx(
