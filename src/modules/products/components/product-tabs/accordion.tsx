@@ -68,17 +68,12 @@ const Item = ({
           )}
         </div>
       </div>
-      <AccordionPanel
-        forceMount={forceMountContent}
-        className={clx(
-          "radix-state-closed:animate-accordion-close radix-state-open:animate-accordion-open radix-state-closed:pointer-events-none px-1"
-        )}
-      >
+      <AccordionItem>
         <div className="inter-base-regular group-radix-state-closed:animate-accordion-close">
           {description && <Text>{description}</Text>}
           <div className="w-full">{children}</div>
         </div>
-      </AccordionPanel>
+      </AccordionItem>
     </AccordionItem>
   )
 }
