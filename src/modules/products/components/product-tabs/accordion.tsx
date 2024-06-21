@@ -2,10 +2,19 @@ import { Text, clx } from "@medusajs/ui"
 import { Accordion, AccordionItem } from "@nextui-org/react"
 import React from "react"
 
-const AccordionComponent = ({ children, ...props } : {childeren: React.ReactNode}) => {
+
+interface AccordionComponentProps {
+  children: any
+  type: undefined | "single" | "multiple"
+}
+
+const AccordionComponent = ({
+  children,
+  ...props
+}: AccordionComponentProps) => {
   const { type, ...accordionProps } = props
   return (
-    <Accordion type={type} {...accordionProps}>
+    <Accordion {...accordionProps}>
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
           // Clone each child (AccordionItem) and pass necessary props
@@ -21,15 +30,15 @@ const AccordionComponent = ({ children, ...props } : {childeren: React.ReactNode
 }
 
 const Item = ({
-  title,
-  subtitle,
-  description,
-  children,
-  className,
+  title = undefined,
+  subtitle = undefined,
+  description = undefined,
+  children = undefined,
+  className = undefined,
   headingSize = "large",
   customTrigger = undefined,
   forceMountContent = undefined,
-  triggerable,
+  triggerable = undefined,
   ...props
 }) => {
   return (
