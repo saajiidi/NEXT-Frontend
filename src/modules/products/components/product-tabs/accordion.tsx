@@ -35,7 +35,7 @@ const Item = ({
   title: string = '',
   subtitle: string = '',
   description: string = '',
-  className?: undefined,
+  className: undefined,
   headingSize = 'large',
   customTrigger = undefined,
   ...props,
