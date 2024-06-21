@@ -1,5 +1,5 @@
 import { Text, clx } from "@medusajs/ui"
-import { Accordion, AccordionItem } from "@nextui-org/accordion"
+import { Accordion, AccordionItem } from "@nextui-org/**"
 import React from "react"
 
 const AccordionComponent = ({ children, ...props }) => {
