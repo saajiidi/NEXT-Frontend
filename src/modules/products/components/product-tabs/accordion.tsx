@@ -1,5 +1,6 @@
 import { Text, clx } from "@medusajs/ui"
 import { Accordion, AccordionItem } from "@nextui-org/react"
+import AccordionPanel from "@radix-ui/react-accordion"
 import React from "react"
 
 
@@ -67,7 +68,7 @@ const Item = ({
           )}
         </div>
       </div>
-      <AccordionItem.content
+      <AccordionPanel
         forceMount={forceMountContent}
         className={clx(
           "radix-state-closed:animate-accordion-close radix-state-open:animate-accordion-open radix-state-closed:pointer-events-none px-1"
@@ -77,7 +78,7 @@ const Item = ({
           {description && <Text>{description}</Text>}
           <div className="w-full">{children}</div>
         </div>
-      </AccordionItem.content>
+      </AccordionPanel>
     </AccordionItem>
   )
 }
