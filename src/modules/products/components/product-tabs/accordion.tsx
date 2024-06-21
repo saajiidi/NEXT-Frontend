@@ -56,9 +56,9 @@ const Item = ({
             <div className="flex items-center gap-4">
               <Text className="text-ui-fg-subtle text-sm">{title}</Text>
             </div>
-            <AccordionItem.Trigger asChild>
+            <AccordionItem>
               {customTrigger || <MorphingTrigger />}
-            </AccordionItem.Trigger>
+            </AccordionItem> 
           </div>
           {subtitle && (
             <Text as="span" size="small" className="mt-1">
@@ -67,7 +67,7 @@ const Item = ({
           )}
         </div>
       </div>
-      <AccordionItem.Content
+      <AccordionItem.content
         forceMount={forceMountContent}
         className={clx(
           "radix-state-closed:animate-accordion-close radix-state-open:animate-accordion-open radix-state-closed:pointer-events-none px-1"
@@ -77,7 +77,7 @@ const Item = ({
           {description && <Text>{description}</Text>}
           <div className="w-full">{children}</div>
         </div>
-      </AccordionItem.Content>
+      </AccordionItem.content>
     </AccordionItem>
   )
 }
