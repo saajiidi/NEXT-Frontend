@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
+ <a href="https://nextjs.org/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/229103275/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/229103726/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
+      <img alt="Next.js logo" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg" width="120">
     </picture>
   </a>
 </p>
