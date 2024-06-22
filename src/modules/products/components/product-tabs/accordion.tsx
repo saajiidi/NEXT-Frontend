@@ -33,7 +33,7 @@ const Item = ({
   title = "",
   subtitle = "",
   description = "",
-  className,
+  className = any,
   headingSize = "large",
   customTrigger,
   ...props
