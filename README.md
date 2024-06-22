@@ -1,6 +1,3 @@
-Here's a cleaned-up and polished README for your GitHub repository:
-
-```markdown
 <p align="center">
   <a href="https://www.medusajs.com">
   <picture>
