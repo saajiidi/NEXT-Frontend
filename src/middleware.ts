@@ -13,43 +13,36 @@ const regionMapCache = {
 async function getRegionMap() {
   const { regionMap, regionMapUpdated } = regionMapCache
 
-  if (
-    !regionMap.keys().next().value ||
-    regionMapUpdated < Date.now() - 3600 * 1000
-  ) {
-    // Fetch regions from Medusa. We can't use the JS client here because middleware is running on Edge and the client needs a Node environment.
-    const { regions } = await fetch(`${BACKEND_URL}/store/regions`, {
-      next: {
-        revalidate: 3600,
-        tags: ["regions"],
-      },
-    }).then((res) => res.json())
+  if (!regionMap.size || regionMapUpdated < Date.now() - 3600 * 1000) {
+    try {
+      const response = await fetch(`${BACKEND_URL}/store/regions`)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch regions: ${response.statusText}`)
+      }
+      const { regions } = await response.json()
+      if (!regions) {
+        throw new Error("Regions not found")
+      }
 
-    if (!regions) {
-      notFound()
-    }
-
-    // Create a map of country codes to regions.
-    regions.forEach((region: Region) => {
-      region.countries.forEach((c) => {
-        regionMapCache.regionMap.set(c.iso_2, region)
+      regionMap.clear()
+      regions.forEach((region: Region) => {
+        region.countries.forEach((c) => {
+          regionMap.set(c.iso_2.toLowerCase(), region)
+        })
       })
-    })
 
-    regionMapCache.regionMapUpdated = Date.now()
+      regionMapCache.regionMapUpdated = Date.now()
+    } catch (error) {
+      console.error("Error fetching regions:", error.message)
+    }
   }
 
-  return regionMapCache.regionMap
+  return regionMap
 }
 
-/**
- * Fetches regions from Medusa and sets the region cookie.
- * @param request
- * @param response
- */
 async function getCountryCode(
   request: NextRequest,
-  regionMap: Map<string, Region | number>
+  regionMap: Map<string, Region>
 ) {
   try {
     let countryCode
@@ -66,23 +59,16 @@ async function getCountryCode(
       countryCode = vercelCountryCode
     } else if (regionMap.has(DEFAULT_REGION)) {
       countryCode = DEFAULT_REGION
-    } else if (regionMap.keys().next().value) {
-      countryCode = regionMap.keys().next().value
+    } else {
+      countryCode = regionMap.keys().next().value // Default to any available region
     }
 
     return countryCode
   } catch (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.error(
-        "Middleware.ts: Error getting the country code. Did you set up regions in your Medusa Admin and define a NEXT_PUBLIC_MEDUSA_BACKEND_URL environment variable?"
-      )
-    }
+    console.error("Error getting the country code:", error.message)
   }
 }
 
-/**
- * Middleware to handle region selection and onboarding status.
- */
 export async function middleware(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const isOnboarding = searchParams.get("onboarding") === "true"
@@ -98,7 +84,6 @@ export async function middleware(request: NextRequest) {
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
 
-  // check if one of the country codes is in the url
   if (
     urlHasCountryCode &&
     (!isOnboarding || onboardingCookie) &&
@@ -113,23 +98,19 @@ export async function middleware(request: NextRequest) {
   const queryString = request.nextUrl.search ? request.nextUrl.search : ""
 
   let redirectUrl = request.nextUrl.href
-
   let response = NextResponse.redirect(redirectUrl, 307)
 
-  // If no country code is set, we redirect to the relevant region.
   if (!urlHasCountryCode && countryCode) {
     redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`
-    response = NextResponse.redirect(`${redirectUrl}`, 307)
+    response = NextResponse.redirect(redirectUrl, 307)
   }
 
-  // If a cart_id is in the params, we set it as a cookie and redirect to the address step.
   if (cartId && !checkoutStep) {
     redirectUrl = `${redirectUrl}&step=address`
-    response = NextResponse.redirect(`${redirectUrl}`, 307)
+    response = NextResponse.redirect(redirectUrl, 307)
     response.cookies.set("_medusa_cart_id", cartId, { maxAge: 60 * 60 * 24 })
   }
 
-  // Set a cookie to indicate that we're onboarding. This is used to show the onboarding flow.
   if (isOnboarding) {
     response.cookies.set("_medusa_onboarding", "true", { maxAge: 60 * 60 * 24 })
   }
