@@ -3,7 +3,6 @@ import { Accordion, AccordionItem } from "@nextui-org/react"
 import AccordionPanel from "@radix-ui/react-accordion"
 import React from "react"
 
-
 interface AccordionComponentProps {
   children: any
   type: undefined | "single" | "multiple"
@@ -31,14 +30,13 @@ const AccordionComponent = ({
 }
 
 const Item = ({
- 
-  title: string = '',
-  subtitle: string = '',
-  description: string = '',
+  title: string = "",
+  subtitle: string = "",
+  description: string = "",
   className: undefined,
-  headingSize = 'large',
+  headingSize = "large",
   customTrigger = undefined,
-  ...props,
+  ...props
 }) => {
   return (
     <AccordionItem
