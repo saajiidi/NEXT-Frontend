@@ -36,6 +36,7 @@ const Item = ({
   className: string,
   headingSize = "large",
   customTrigger,
+  children,
   ...props
 }: {
   title?: string
@@ -44,6 +45,7 @@ const Item = ({
   className?: string
   headingSize?: string
   customTrigger?: React.ReactNode
+  children?: React.ReactNode
   [key: string]: any
 }) => {
   return (
