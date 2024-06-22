@@ -44,7 +44,7 @@ To use the [Next.js Starter Template](https://medusajs.com/nextjs-commerce/), yo
    cd next-frontend
    ```
 
-3. Install the necessary packages:
+3. Install Dependencies:
    ```bash
    npm install
    ```
@@ -54,7 +54,7 @@ To use the [Next.js Starter Template](https://medusajs.com/nextjs-commerce/), yo
    npm run dev
    ```
 
-This will set up the project locally.
+Your site is now running at [http://localhost:8000](http://localhost:8000)!
 
 ## Overview
 
@@ -84,34 +84,8 @@ Features include:
   - Streaming
   - Static Pre-Rendering
 
-## Quickstart
 
-### Setting up the Environment Variables
 
-Navigate into your project's directory and set up your environment variables:
-
-```shell
-cd nextjs-starter-medusa/
-mv .env.template .env.local
-```
-
-### Install Dependencies
-
-Use Yarn to install all dependencies.
-
-```shell
-yarn
-```
-
-### Start Developing
-
-You are now ready to start up your project.
-
-```shell
-yarn dev
-```
-
-Your site is now running at [http://localhost:8000](http://localhost:8000)!
 
 ## App Structure
 
