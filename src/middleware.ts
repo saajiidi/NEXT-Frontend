@@ -33,7 +33,7 @@ async function getRegionMap() {
 
       regionMapCache.regionMapUpdated = Date.now()
     } catch (error) {
-      console.error("Error fetching regions:", error.message)
+      console.error("Error fetching regions:")
     }
   }
 
@@ -65,7 +65,7 @@ async function getCountryCode(
 
     return countryCode
   } catch (error) {
-    console.error("Error getting the country code:", error.message)
+    console.error("Error getting the country code:")
   }
 }
 
