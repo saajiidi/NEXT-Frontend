@@ -33,10 +33,18 @@ const Item = ({
   title = "",
   subtitle = "",
   description = "",
-  className = any,
+  className: string,
   headingSize = "large",
   customTrigger,
   ...props
+}: {
+  title?: string
+  subtitle?: string
+  description?: string
+  className?: string
+  headingSize?: string
+  customTrigger?: React.ReactNode
+  [key: string]: any
 }) => {
   return (
     <AccordionItem
