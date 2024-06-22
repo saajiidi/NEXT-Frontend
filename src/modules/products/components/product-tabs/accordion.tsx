@@ -30,20 +30,19 @@ const AccordionComponent = ({
 }
 
 const Item = ({
-  title: string = "",
-  subtitle: string = "",
-  description: string = "",
-  className: undefined,
+  title = "",
+  subtitle = "",
+  description = "",
+  className,
   headingSize = "large",
-  customTrigger = undefined,
+  customTrigger,
   ...props
 }) => {
   return (
     <AccordionItem
       className={clx(
         "border-grey-20 group border-t last:mb-0 last:border-b",
-        "py-3",
-        className
+        "py-3"
       )}
       {...props}
     >
